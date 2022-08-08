@@ -28,9 +28,6 @@ public class Curso implements Serializable {
 	@OneToMany(mappedBy = "curso")
 	private Set<Modulo> modulos = new HashSet<>();
 	
-	@OneToMany(mappedBy = "curso")
-	private Set<Matricula> matriculas = new HashSet<>();
-	
 	@ManyToMany
 	@JoinTable(name = "curso_aluno", 
 		joinColumns = @JoinColumn(name = "id_curso"), 
@@ -64,10 +61,6 @@ public class Curso implements Serializable {
 
 	public Set<Modulo> getModulos() {
 		return modulos;
-	}
-
-	public Set<Matricula> getMatriculas() {
-		return matriculas;
 	}
 
 	public Set<Aluno> getAlunos() {

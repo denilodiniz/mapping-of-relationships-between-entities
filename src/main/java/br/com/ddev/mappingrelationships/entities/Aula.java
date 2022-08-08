@@ -28,9 +28,10 @@ public class Aula implements Serializable {
 	public Aula() {
 	}
 	
-	public Aula(Long id, String name) {
+	public Aula(Long id, String name, Modulo modulo) {
 		this.id = id;
 		this.name = name;
+		this.modulo = modulo;
 	}
 
 	public Long getId() {
@@ -47,6 +48,14 @@ public class Aula implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Modulo getModulo() {
+		return modulo;
+	}
+
+	public void setModulo(Modulo modulo) {
+		this.modulo = modulo;
 	}
 
 	@Override

@@ -34,9 +34,10 @@ public class Modulo implements Serializable {
 	public Modulo() {
 	}
 	
-	public Modulo(Long id, String name) {
+	public Modulo(Long id, String name, Curso curso) {
 		this.id = id;
 		this.name = name;
+		this.curso = curso;
 	}
 	
 	public Long getId() {

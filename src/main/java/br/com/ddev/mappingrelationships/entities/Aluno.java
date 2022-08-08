@@ -1,7 +1,9 @@
 package br.com.ddev.mappingrelationships.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -9,9 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,14 +23,14 @@ public class Aluno implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
 	
-	@OneToOne
-	@JoinColumn(name = "id_matricula")
-	private Matricula matricula;
+	private String name;
 	
 	@ManyToMany(mappedBy = "alunos")
 	private Set<Curso> cursos = new HashSet<>();
+	
+	@OneToMany(mappedBy = "aluno")
+	private List<Pagamento> pagamentos = new ArrayList<>();
 	
 	public Aluno() {
 	}
@@ -54,7 +55,11 @@ public class Aluno implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	public Set<Curso> getCursos() {
+		return cursos;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

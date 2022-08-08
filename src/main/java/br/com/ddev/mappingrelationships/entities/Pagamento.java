@@ -2,7 +2,7 @@ package br.com.ddev.mappingrelationships.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -11,7 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,21 +24,22 @@ public class Pagamento implements Serializable {
 	private Long id;
 	
 	@Column(name = "data_pagamento")
-	private LocalDateTime dataPagamento;
+	private Instant dataPagamento;
 	
 	private BigDecimal valor;
 	
-	@OneToOne
-	@JoinColumn(name = "id_matricula")
-	private Matricula matricula;
+	@ManyToOne
+	@JoinColumn(name = "id_aluno")
+	private Aluno aluno;
 
 	public Pagamento() {
 	}
 
-	public Pagamento(Long id, BigDecimal valor, LocalDateTime dataPagamento) {
+	public Pagamento(Long id, BigDecimal valor, Instant dataPagamento, Aluno aluno) {
 		this.id = id;
 		this.valor = valor;
 		this.dataPagamento = dataPagamento;
+		this.aluno = aluno;
 	}
 
 	public Long getId() {
@@ -57,20 +58,20 @@ public class Pagamento implements Serializable {
 		this.valor = valor;
 	}
 
-	public LocalDateTime getDataPagamento() {
+	public Instant getDataPagamento() {
 		return dataPagamento;
 	}
 
-	public void setDataPagamento(LocalDateTime dataPagamento) {
+	public void setDataPagamento(Instant dataPagamento) {
 		this.dataPagamento = dataPagamento;
 	}
-
-	public Matricula getMatricula() {
-		return matricula;
+	
+	public Aluno getAluno() {
+		return aluno;
 	}
 
-	public void setMatricula(Matricula matricula) {
-		this.matricula = matricula;
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
 	}
 
 	@Override
