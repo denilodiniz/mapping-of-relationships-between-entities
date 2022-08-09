@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_modulo")
 public class Modulo implements Serializable {
@@ -24,6 +26,7 @@ public class Modulo implements Serializable {
 	private Long id;
 	private String name;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_curso")
 	private Curso curso;

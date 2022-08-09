@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_curso")
 public class Curso implements Serializable {
@@ -25,9 +27,11 @@ public class Curso implements Serializable {
 	private Long id;
 	private String name;
 	
+	
 	@OneToMany(mappedBy = "curso")
 	private Set<Modulo> modulos = new HashSet<>();
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "curso_aluno", 
 		joinColumns = @JoinColumn(name = "id_curso"), 

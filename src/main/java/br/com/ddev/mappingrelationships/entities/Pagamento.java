@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_pagamento")
 public class Pagamento implements Serializable {
@@ -28,6 +30,7 @@ public class Pagamento implements Serializable {
 	
 	private BigDecimal valor;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_aluno")
 	private Aluno aluno;

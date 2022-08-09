@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_aula")
 public class Aula implements Serializable {
@@ -21,6 +23,7 @@ public class Aula implements Serializable {
 	private Long id;
 	private String name;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_modulo")
 	private Modulo modulo;

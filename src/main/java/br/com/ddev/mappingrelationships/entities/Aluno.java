@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_aluno")
 public class Aluno implements Serializable {
@@ -29,6 +31,7 @@ public class Aluno implements Serializable {
 	@ManyToMany(mappedBy = "alunos")
 	private Set<Curso> cursos = new HashSet<>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "aluno")
 	private List<Pagamento> pagamentos = new ArrayList<>();
 	
@@ -58,6 +61,10 @@ public class Aluno implements Serializable {
 
 	public Set<Curso> getCursos() {
 		return cursos;
+	}
+	
+	public List<Pagamento> getPagamentos() {
+		return pagamentos;
 	}
 
 	@Override
