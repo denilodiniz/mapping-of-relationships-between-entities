@@ -31,6 +31,7 @@ public class Modulo implements Serializable {
 	@JoinColumn(name = "id_curso")
 	private Curso curso;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "modulo")
 	private Set<Aula> aulas = new HashSet<>();
 	
