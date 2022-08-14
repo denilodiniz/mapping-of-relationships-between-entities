@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.ddev.mappingrelationships.entities.Aluno;
 import br.com.ddev.mappingrelationships.repositories.AlunoRepository;
+import br.com.ddev.mappingrelationships.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class AlunoService {
@@ -17,7 +18,7 @@ public class AlunoService {
 	
 	public Aluno findById(Long id) {
 		Optional<Aluno> aluno = repository.findById(id);
-		return aluno.get();
+		return aluno.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public List<Aluno> findAll() {
